@@ -10,12 +10,12 @@ class IssueSpider(Spider):
     """Scrape github issues list from Github API"""
 
     name = "issues"
-    allowed_domains = ['api.github.com']
+    allowed_domains = ["api.github.com"]
 
-    def start_request(self):
+    def start_requests(self):
         url = "https://api.github.com/repos/{owner}/{repo}/issues".format(
-            owner=settings.get("GITHUB_REPO_OWNER"),
-            repo=settings.get("GITHUB_REPO_NAME"),
+            owner=self.settings.get("GITHUB_REPO_OWNER"),
+            repo=self.settings.get("GITHUB_REPO_NAME"),
         )
         yield Request(url, callback=self.parse_issues)
 

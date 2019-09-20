@@ -1,9 +1,19 @@
-from scrapy.downloadermiddlewares import DownloaderMiddleware
+import random
 
 
-class HttpAuthenticationPoolMiddleware(DownloaderMiddleware):
+class HttpAuthenticationPoolMiddleware(object):
+    def __init__(self, tokens):
+        self.tokens = tokens
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        tokens = crawler.settings.getlist("GITHUB_API_TOKENS")
+
+        # instantiate the extension object
+        ext = cls(tokens)
+
+        return ext
+
     def process_request(self, request, spider):
-        tokens = spider.settings.getlist("GITHUB_API_TOKENS")
-        token = random.choice(tokens)
+        token = random.choice(self.tokens)
         request.headers["Authorization"] = token
-        return request
