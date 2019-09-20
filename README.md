@@ -1,7 +1,7 @@
 # github-api-scrapy
 Use scrapy to consume GitHub API
 
-Instructions:
+## Usage
 
 ```
 > pip install -r requirements.txt
