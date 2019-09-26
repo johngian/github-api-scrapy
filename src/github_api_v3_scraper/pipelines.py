@@ -1,9 +1,7 @@
-import json
 import logging
 
 from peewee import Model
 from playhouse.sqlite_ext import JSONField, SqliteExtDatabase
-from scrapy.exceptions import DropItem
 
 
 class Issue(Model):

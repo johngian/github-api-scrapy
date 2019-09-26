@@ -21,7 +21,7 @@ class IssueSpider(Spider):
     allowed_domains = ["api.github.com"]
 
     def start_requests(self):
-        url = "https://api.github.com/repos/{owner}/{repo}/issues".format(
+        url = "https://api.github.com/repos/{owner}/{repo}/issues?state=all".format(
             owner=self.settings.get("GITHUB_REPO_OWNER"),
             repo=self.settings.get("GITHUB_REPO_NAME"),
         )
