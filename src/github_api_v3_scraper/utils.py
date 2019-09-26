@@ -1,11 +1,10 @@
+import links_from_header
+
+
 def get_next(headers):
-    header_links = headers.get("Link", None)
-    if header_links:
-        links = header_links.split(",")
-        for link in links:
-            if 'rel="next"' in link:
-                l, rel = link.split(";")
-                l = l.lstrip("<")
-                l = l.rstrip(">")
-                return l
+    links_header = headers.get("Link", None)
+    if links_header:
+        links = links_from_header.extract(links_header.decode())
+        if "next" in links:
+            return links["next"]
     return None
